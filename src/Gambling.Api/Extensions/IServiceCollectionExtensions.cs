@@ -1,16 +1,23 @@
 ﻿using Gambling.Data;
-using Gambling.Model.Account;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Gambling.Api.Extensions;
 
 public static class IServiceCollectionExtensions
 {
-    public static void AddGamblingIdentity(this IServiceCollection services)
+    public static void AddGamblingServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddIdentity<User, Role>(options =>
+        AddGamblingDbContext(services, configuration);
+    }
+
+    private static void AddGamblingDbContext(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddDbContext<GamblingDbContext>(options =>
         {
-            options.Password.RequiredLength = 3;
-        }).AddEntityFrameworkStores<GamblingDbContext>().AddDefaultTokenProviders();
+            options.UseSqlServer(configuration.GetConnectionString("AppDbConnectionString"), sqlOptions =>
+            {
+                sqlOptions.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+            });
+        });
     }
 }
