@@ -1,3 +1,5 @@
+using Gambling.Model;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +9,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddGamblingServices(builder.Configuration);
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection(nameof(AppSettings)));
+
+// Add all Gambling services
+builder.Services.AddAllGamblingServices(builder.Configuration);
 
 var app = builder.Build();
 
