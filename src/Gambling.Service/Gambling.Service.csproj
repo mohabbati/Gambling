@@ -16,9 +16,4 @@
 		<ProjectReference Include="..\Gambling.Shared\Gambling.Shared.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Using Include="AutoMapper" />
-		<Using Include="AutoMapper.QueryableExtensions" />
-	</ItemGroup>
-
 </Project>
