@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambling.Data", "Gambling.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambling.Shared", "Gambling.Shared\Gambling.Shared.csproj", "{9AAD168F-DD8A-47FD-B8EF-49CCA27FD869}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambling.Test", "Gambling.Test\Gambling.Test.csproj", "{6C7122E4-3D1F-4145-95E8-DEC374C960AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{9AAD168F-DD8A-47FD-B8EF-49CCA27FD869}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AAD168F-DD8A-47FD-B8EF-49CCA27FD869}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AAD168F-DD8A-47FD-B8EF-49CCA27FD869}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C7122E4-3D1F-4145-95E8-DEC374C960AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C7122E4-3D1F-4145-95E8-DEC374C960AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C7122E4-3D1F-4145-95E8-DEC374C960AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C7122E4-3D1F-4145-95E8-DEC374C960AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
