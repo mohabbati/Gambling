@@ -10,9 +10,8 @@ public static class IHostBuilderExtensions
         {
             builder.UseSerilog((hostBuilder, loggerConfiguration) =>
             {
-                loggerConfiguration.WriteTo.Console(
-                        outputTemplate:
-                        "[{Timestamp:HH:mm:ss} {Level:u3} {Message:lj}{NewLine}{Exception}");
+                loggerConfiguration
+                    .WriteTo.Console();
             });
         }
         else
