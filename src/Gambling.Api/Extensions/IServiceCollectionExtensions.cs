@@ -14,11 +14,6 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 public static class IServiceCollectionExtensions
 {
-    public static void AddGamblingServices(this IServiceCollection services)
-    {
-        services.AddScoped<IAuthService, AuthService>();
-    }
-
     public static void AddGamblingDbContext(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<GamblingDbContext>(options =>
