@@ -8,21 +8,13 @@ using Gambling.Model;
 using Gambling.Model.Account;
 using Gambling.Service;
 using Gambling.Service.Implemetations;
+using Microsoft.OpenApi.Models;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
 public static class IServiceCollectionExtensions
 {
-    public static void AddAllGamblingServices(this IServiceCollection services, IConfiguration configuration)
-    {
-        var appSettings = configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
-
-        AddGamblingDbContext(services, configuration);
-        AddGamblingIdentity(services, appSettings.IdentitySettings);
-        AddGamblingJwt(services, appSettings.JwtSettings);
-    }
-
-    private static void AddGamblingDbContext(IServiceCollection services, IConfiguration configuration)
+    public static void AddGamblingDbContext(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<GamblingDbContext>(options =>
         {
@@ -33,7 +25,7 @@ public static class IServiceCollectionExtensions
         });
     }
 
-    private static void AddGamblingIdentity(IServiceCollection services, IdentitySettings identitySettings)
+    public static void AddGamblingIdentity(this IServiceCollection services, IdentitySettings identitySettings)
     {
         services.AddIdentity<User, Role>(options =>
         {
@@ -94,5 +86,36 @@ public static class IServiceCollectionExtensions
         });
 
         services.AddAuthorization();
+    }
+
+    public static void AddGamblingSwaggerGen(this IServiceCollection services)
+    {
+        services.AddSwaggerGen(options =>
+        {
+            options.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
+            {
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                Scheme = "bearer",
+                BearerFormat = "JWT",
+                In = ParameterLocation.Header,
+                Description = "JWT Authorization header using the Bearer scheme."
+            });
+
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "bearerAuth"
+                        }
+                    },
+                    new string[] {}
+                }
+            });
+        });
     }
 }

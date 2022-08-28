@@ -1,32 +1,20 @@
-using Gambling.Model;
-
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.Configure<AppSettings>(builder.Configuration.GetSection(nameof(AppSettings)));
-
-// Add all Gambling services
-builder.Services.AddAllGamblingServices(builder.Configuration);
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+try
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var builder = WebApplication.CreateBuilder(args);
+
+    Gambling.Api.Startup.Services.Add(builder.Services, builder.Configuration);
+
+    var app = builder.Build();
+
+    Gambling.Api.Startup.Middlewares.Use(app, builder.Environment);
+
+    app.Run();
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
+catch
+{
+    //TODO: Log "An unhandled exception occured."
+}
+finally
+{
+    //TODO: Flush
+}
