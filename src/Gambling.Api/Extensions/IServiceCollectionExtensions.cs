@@ -35,10 +35,6 @@ public static class IServiceCollectionExtensions
         services.AddIdentity<User, Role>(options =>
         {
             options.Password.RequiredLength = identitySettings.PasswordRequiredLength;
-            options.Password.RequireNonAlphanumeric = false;
-            options.Password.RequireUppercase = false;
-            options.Password.RequireLowercase = false;
-            options.Password.RequireDigit = false;
         }).AddEntityFrameworkStores<GamblingDbContext>().AddDefaultTokenProviders();
     }
 
