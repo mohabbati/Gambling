@@ -2,7 +2,7 @@
 
 public interface IGamblingEntity<TKey>
 {
-    Guid Id { get; set; }
+    TKey Id { get; set; }
 }
 
 public interface IGamblingEntity : IGamblingEntity<Guid>

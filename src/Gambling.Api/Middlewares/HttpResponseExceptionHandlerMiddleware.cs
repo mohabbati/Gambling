@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using Gambling.Shared.Exceptions;
+using System.Net;
 using System.Reflection;
 using ILogger = Serilog.ILogger;
 
@@ -25,7 +26,10 @@ public class HttpResponseExceptionHandlerMiddleware
         {
             var exception = UnWrapException(ex);
 
-            logger.Error(exception, "");
+            if (ex is not LogicException)
+            {
+                logger.Error(exception, "");
+            }
 
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
