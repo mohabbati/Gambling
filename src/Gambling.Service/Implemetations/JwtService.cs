@@ -4,8 +4,8 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Identity;
-using Gambling.Model.Account;
-using Gambling.Service.Dtos.Account;
+using Gambling.Model.Identity;
+using Gambling.Service.Dtos.Identity;
 using Gambling.Model;
 
 namespace Gambling.Service.Implemetations;

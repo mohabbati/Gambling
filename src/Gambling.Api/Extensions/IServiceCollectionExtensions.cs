@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Gambling.Data;
 using Gambling.Model;
-using Gambling.Model.Account;
+using Gambling.Model.Identity;
 using Gambling.Service;
 using Gambling.Service.Implemetations;
-using Microsoft.OpenApi.Models;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -16,7 +16,7 @@ public static class IServiceCollectionExtensions
 {
     public static void AddGamblingServices(this IServiceCollection services)
     {
-        //
+        services.AddScoped<IAuthService, AuthService>();
     }
 
     public static void AddGamblingDbContext(this IServiceCollection services, IConfiguration configuration)
@@ -35,6 +35,10 @@ public static class IServiceCollectionExtensions
         services.AddIdentity<User, Role>(options =>
         {
             options.Password.RequiredLength = identitySettings.PasswordRequiredLength;
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequireUppercase = false;
+            options.Password.RequireLowercase = false;
+            options.Password.RequireDigit = false;
         }).AddEntityFrameworkStores<GamblingDbContext>().AddDefaultTokenProviders();
     }
 

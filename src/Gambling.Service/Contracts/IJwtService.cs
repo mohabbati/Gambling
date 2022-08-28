@@ -1,5 +1,5 @@
-﻿using Gambling.Model.Account;
-using Gambling.Service.Dtos.Account;
+﻿using Gambling.Model.Identity;
+using Gambling.Service.Dtos.Identity;
 
 namespace Gambling.Service;
 
