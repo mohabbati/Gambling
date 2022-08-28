@@ -18,6 +18,14 @@ public class AuthService : IAuthService
 
     public async Task<Result<SignUpOutputDto>> SignUp(SignUpInputDto input, CancellationToken cancellationToken)
     {
+        var existingUser = await _userManager.FindByNameAsync(input.UserName);
+
+        if(existingUser is not null)
+        {
+            var message = "The user name is already taken.";
+            return new Result<SignUpOutputDto>(new LogicException(message));
+        }
+
         var user = input.Adapt<User>();
 
         var result = await _userManager.CreateAsync(user, input.Password);
