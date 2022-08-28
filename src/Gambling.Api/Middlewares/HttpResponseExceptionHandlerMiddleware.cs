@@ -21,9 +21,9 @@ public class HttpResponseExceptionHandlerMiddleware
         {
             await _next(context);
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            var exception = UnWrapException(e);
+            var exception = UnWrapException(ex);
 
             logger.Error(exception, "");
 
