@@ -1,6 +1,6 @@
-﻿using Gambling.Model.Account;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Gambling.Model.Identity;
 
 namespace Gambling.Data;
 

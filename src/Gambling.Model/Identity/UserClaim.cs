@@ -1,7 +1,7 @@
 ﻿using Gambling.Model.Common;
 using Microsoft.AspNetCore.Identity;
 
-namespace Gambling.Model.Account;
+namespace Gambling.Model.Identity;
 
 public class UserClaim : IdentityUserClaim<Guid>, IGamblingEntity
 {

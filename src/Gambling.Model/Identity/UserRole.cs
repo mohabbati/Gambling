@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Gambling.Model.Account;
+namespace Gambling.Model.Identity;
 
 public class UserRole : IdentityUserRole<Guid>
 {
