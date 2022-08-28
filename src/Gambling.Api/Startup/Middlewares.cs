@@ -1,4 +1,7 @@
-﻿namespace Gambling.Api.Startup;
+﻿using Gambling.Api.Middlewares;
+using Serilog;
+
+namespace Gambling.Api.Startup;
 
 public static class Middlewares
 {
@@ -9,6 +12,10 @@ public static class Middlewares
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+
+        app.UseSerilogRequestLogging();
+        
+        app.UseHttpResponseExceptionHandler();
 
         app.UseHttpsRedirection();
 
