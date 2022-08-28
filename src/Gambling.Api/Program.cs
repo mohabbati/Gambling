@@ -1,6 +1,10 @@
+using Serilog;
+
 try
 {
     var builder = WebApplication.CreateBuilder(args);
+
+    builder.Host.ConfigureLogger(builder.Environment);
 
     Gambling.Api.Startup.Services.Add(builder.Services, builder.Configuration);
 
@@ -10,11 +14,11 @@ try
 
     app.Run();
 }
-catch
+catch(Exception ex)
 {
-    //TODO: Log "An unhandled exception occured."
+    Log.Fatal(ex, "An unhandled exception occurred.");
 }
 finally
 {
-    //TODO: Flush
+    Log.CloseAndFlush();
 }
