@@ -4,6 +4,7 @@ using Gambling.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Gambling.Data.Migrations
 {
     [DbContext(typeof(GamblingDbContext))]
-    partial class GamblingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220830122632_AddAccountAndGameEntities")]
+    partial class AddAccountAndGameEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
