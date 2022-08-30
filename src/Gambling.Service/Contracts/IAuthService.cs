@@ -1,4 +1,6 @@
-﻿namespace Gambling.Service;
+﻿using Gambling.Service.Dtos.Identity;
+
+namespace Gambling.Service;
 
 public interface IAuthService
 {
