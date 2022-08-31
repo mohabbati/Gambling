@@ -1,4 +1,5 @@
-﻿using Gambling.Model;
+﻿using Gambling.Model.Identity;
+using Gambling.Service.Dtos.Identity;
 using Microsoft.AspNetCore.Identity;
 
 namespace Gambling.Service.Implemetations;
@@ -8,12 +9,14 @@ public class AuthService : IAuthService
     private readonly UserManager<User> _userManager;
     private readonly SignInManager<User> _signInManager;
     private readonly IJwtService _jwtService;
+    private readonly IAccountService _accountService;
 
-    public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, IJwtService jwtService)
+    public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, IJwtService jwtService, IAccountService accountService)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _jwtService = jwtService;
+        _accountService = accountService;
     }
 
     public async Task<Result<SignUpOutputDto>> SignUp(SignUpInputDto input, CancellationToken cancellationToken)
@@ -35,6 +38,8 @@ public class AuthService : IAuthService
             var message = string.Join(" - ", result.Errors.Select(e => e.Description).ToList());
             return new Result<SignUpOutputDto>(new LogicException(message));
         }
+
+        await _accountService.InitializeAccount(new() { UserId = user.Id }, cancellationToken);
 
         var output = user.Adapt<SignUpOutputDto>();
 
