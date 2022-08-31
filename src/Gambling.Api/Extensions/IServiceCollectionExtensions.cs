@@ -7,7 +7,6 @@ using Microsoft.OpenApi.Models;
 using Gambling.Data;
 using Gambling.Model;
 using Gambling.Model.Identity;
-using Gambling.Service;
 using Gambling.Service.Implemetations;
 
 namespace Microsoft.Extensions.DependencyInjection;
@@ -17,6 +16,7 @@ public static class IServiceCollectionExtensions
     public static void AddGamblingServices(this IServiceCollection services)
     {
         services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IAccountService, AccountService>();
     }
 
     public static void AddGamblingDbContext(this IServiceCollection services, IConfiguration configuration)
