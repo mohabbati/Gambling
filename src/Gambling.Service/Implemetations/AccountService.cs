@@ -4,7 +4,6 @@ using Gambling.Model.Identity;
 using Gambling.Service.Dtos.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Data;
 
 namespace Gambling.Service.Implemetations;
 
@@ -14,7 +13,7 @@ public class AccountService : IAccountService
     private readonly UserManager<User> _userManager;
 
     //TODO: We must ensure the account balance is valid due to the concurrency issue.
-    //Semaphore lock the thread, so it is not a good solution for the issue, but it works for this challange.
+    //In the current scenario, Semaphore just uses one thread, so it is not a good solution for the issue, but it works for this challenge.
     //Another low cost approach is using queue for every account.
     private readonly SemaphoreSlim _lock = new(1);
 
