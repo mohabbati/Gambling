@@ -17,6 +17,9 @@ public static class IServiceCollectionExtensions
     {
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<IGameService, GameService>();
+
+        services.AddSingleton<IRandomService, RandomService>();
     }
 
     public static void AddGamblingDbContext(this IServiceCollection services, IConfiguration configuration)
