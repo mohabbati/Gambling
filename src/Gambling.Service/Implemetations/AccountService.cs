@@ -13,7 +13,7 @@ public class AccountService : IAccountService
     private readonly UserManager<User> _userManager;
 
     //TODO: We must ensure the account balance is valid due to the concurrency issue.
-    //In the current scenario, Semaphore just uses one thread, so it is not a good solution for the issue, but it works for this challenge.
+    //In the current scenario, Semaphore just uses one thread as a solution. But it is not a good solution for the issue, however it works for this challenge.
     //Another low cost approach is using queue for every account.
     private readonly SemaphoreSlim _lock = new(1);
 
