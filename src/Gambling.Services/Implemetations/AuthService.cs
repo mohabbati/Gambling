@@ -52,7 +52,7 @@ public class AuthService : IAuthService
 
         if (user is null)
         {
-            var message = "The user name is already exist.";
+            var message = "User not found.";
             return new Result<SignInOutputDto>(new LogicException(message));
         }
 
