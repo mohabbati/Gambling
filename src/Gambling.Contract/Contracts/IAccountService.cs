@@ -1,7 +1,6 @@
-﻿using Gambling.Model.Game;
-using Gambling.Service.Dtos.Account;
+﻿using Gambling.Shared.Dtos.Account;
 
-namespace Gambling.Service;
+namespace Gambling.Contract;
 
 public interface IAccountService
 {

@@ -1,5 +1,5 @@
 ﻿using Gambling.Model.Identity;
-using Gambling.Service.Dtos.Identity;
+using Gambling.Shared.Dtos.Identity;
 using Microsoft.AspNetCore.Identity;
 
 namespace Gambling.Service.Implemetations;
@@ -65,6 +65,6 @@ public class AuthService : IAuthService
             return new Result<SignInOutputDto>(new LogicException(message));
         }
 
-        return await _jwtService.GenerateToken(user);
+        return await _jwtService.GenerateToken(input);
     }
 }

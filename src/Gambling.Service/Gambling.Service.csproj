@@ -7,15 +7,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="LanguageExt.Core" Version="4.2.9" />
 		<PackageReference Include="Mapster" Version="7.3.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Gambling.Contract\Gambling.Contract.csproj" />
 		<ProjectReference Include="..\Gambling.Data\Gambling.Data.csproj" />
 		<ProjectReference Include="..\Gambling.Model\Gambling.Model.csproj" />
-		<ProjectReference Include="..\Gambling.Shared\Gambling.Shared.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace Gambling.Service.Dtos.Game;
+﻿namespace Gambling.Shared.Dtos.Game;
 
 public class PlayInputDto
 {
