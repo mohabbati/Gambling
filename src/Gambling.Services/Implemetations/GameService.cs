@@ -53,7 +53,7 @@ public class GameService : IGameService
             return new Result<PlayOutputDto>(new LogicException(message));
         }
 
-        var play = await PlayGame(account.Id, input.BetAmount, input.ChanceNumber, cancellationToken);
+        var play = await PlayGame(account.Id, input, cancellationToken);
 
         if (play.PlayResult is PlayResult.Won)
         {
@@ -70,18 +70,18 @@ public class GameService : IGameService
         return output;
     }
 
-    private async Task<Play> PlayGame(Guid accountId, int betAmount, byte chanceNumber, CancellationToken cancellationToken)
+    private async Task<Play> PlayGame(Guid accountId, PlayInputDto playInput, CancellationToken cancellationToken)
     {
         var randomNumber = (byte)_randomService.Generate(0, 9 + 1);
 
         var play = new Play
         {
             AccountId = accountId,
-            BetAmount = betAmount,
-            ChanceNumber = chanceNumber,
+            BetAmount = playInput.BetAmount,
+            ChanceNumber = playInput.ChanceNumber,
             StartAt = DateTimeOffset.Now,
-            PlayResult = randomNumber == chanceNumber ? PlayResult.Won : PlayResult.Lost,
-            Point = randomNumber == chanceNumber ? betAmount * 9 : 0
+            PlayResult = randomNumber == playInput.ChanceNumber ? PlayResult.Won : PlayResult.Lost,
+            Point = randomNumber == playInput.ChanceNumber ? playInput.BetAmount * 9 : 0
         };
 
         await _dbContext.Plays.AddAsync(play, cancellationToken);
