@@ -12,9 +12,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Gambling.Contract\Gambling.Contracts.csproj" />
+		<ProjectReference Include="..\Gambling.Contracts\Gambling.Contracts.csproj" />
 		<ProjectReference Include="..\Gambling.Data\Gambling.Data.csproj" />
-		<ProjectReference Include="..\Gambling.Model\Gambling.Models.csproj" />
+		<ProjectReference Include="..\Gambling.Models\Gambling.Models.csproj" />
 	</ItemGroup>
 
 </Project>
