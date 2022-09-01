@@ -1,12 +1,12 @@
 ﻿using Gambling.Shared.Dtos.Account;
 
-namespace Gambling.Contract;
+namespace Gambling.Contracts;
 
 public interface IAccountService
 {
-	Task<Result<AccountOutputDto>> InitializeAccount(AccountInputDto input, CancellationToken cancellationToken);
+	Task<Result<AccountOutputDto>> InitializeAccountAsync(AccountInputDto input, CancellationToken cancellationToken);
 
-    Task<Result<DepositOutputDto>> Deposit(DepositInputDto input, CancellationToken cancellationToken);
+    Task<Result<DepositOutputDto>> DepositAsync(DepositInputDto input, CancellationToken cancellationToken);
 
-    Task<Result<WithdrawOutputDto>> Withdraw(WithdrawInputDto input, CancellationToken cancellationToken);
+    Task<Result<WithdrawOutputDto>> WithdrawAsync(WithdrawInputDto input, CancellationToken cancellationToken);
 }

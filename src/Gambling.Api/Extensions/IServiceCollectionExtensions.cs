@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Gambling.Data;
-using Gambling.Model;
-using Gambling.Model.Identity;
-using Gambling.Service.Implemetations;
+using Gambling.Models;
+using Gambling.Models.Identity;
+using Gambling.Services.Implemetations;
 
 namespace Microsoft.Extensions.DependencyInjection;
 

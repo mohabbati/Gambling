@@ -16,7 +16,7 @@ public class GameController : GamblingControllerBase
     {
         input.UserId = User.GetUserId();
 
-        var result = await _gameService.Play(input, cancellationToken);
+        var result = await _gameService.PlayAsync(input, cancellationToken);
 
         return result.ToOk(c => c);
     }

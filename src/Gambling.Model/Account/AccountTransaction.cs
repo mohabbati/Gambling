@@ -1,4 +1,4 @@
-﻿namespace Gambling.Model.Account;
+﻿namespace Gambling.Models.Account;
 
 public class AccountTransaction : IGamblingEntity
 {

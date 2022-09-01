@@ -1,11 +1,11 @@
 ﻿using Gambling.Data;
-using Gambling.Model.Account;
-using Gambling.Model.Identity;
+using Gambling.Models.Account;
+using Gambling.Models.Identity;
 using Gambling.Shared.Dtos.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Gambling.Service.Implemetations;
+namespace Gambling.Services.Implemetations;
 
 public class AccountService : IAccountService
 {
@@ -23,7 +23,7 @@ public class AccountService : IAccountService
         _userManager = userManager;
     }
 
-    public async Task<Result<AccountOutputDto>> InitializeAccount(AccountInputDto input, CancellationToken cancellationToken)
+    public async Task<Result<AccountOutputDto>> InitializeAccountAsync(AccountInputDto input, CancellationToken cancellationToken)
     {
         var user = await _userManager.FindByIdAsync(input.UserId.ToString());
 
@@ -73,7 +73,7 @@ public class AccountService : IAccountService
         }
     }
 
-    public async Task<Result<DepositOutputDto>> Deposit(DepositInputDto input, CancellationToken cancellationToken)
+    public async Task<Result<DepositOutputDto>> DepositAsync(DepositInputDto input, CancellationToken cancellationToken)
     {
         var account = await _dbContext.Accounts.FirstOrDefaultAsync(x => x.Id == input.AccountId);
 
@@ -101,7 +101,7 @@ public class AccountService : IAccountService
         return output;
     }
 
-    public async Task<Result<WithdrawOutputDto>> Withdraw(WithdrawInputDto input, CancellationToken cancellationToken)
+    public async Task<Result<WithdrawOutputDto>> WithdrawAsync(WithdrawInputDto input, CancellationToken cancellationToken)
     {
         await _lock.WaitAsync(cancellationToken);
 

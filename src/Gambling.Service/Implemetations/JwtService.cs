@@ -4,11 +4,11 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Identity;
-using Gambling.Model.Identity;
+using Gambling.Models.Identity;
 using Gambling.Shared.Dtos.Identity;
-using Gambling.Model;
+using Gambling.Models;
 
-namespace Gambling.Service.Implemetations;
+namespace Gambling.Services.Implemetations;
 
 public class JwtService : IJwtService
 {
@@ -23,7 +23,7 @@ public class JwtService : IJwtService
         _userManager = userManager;
     }
 
-    public async Task<SignInOutputDto> GenerateToken(SignInInputDto input)
+    public async Task<SignInOutputDto> GenerateTokenAsync(SignInInputDto input, CancellationToken cancellationToken)
     {
         var user = await _userManager.FindByNameAsync(input.UserName);
 

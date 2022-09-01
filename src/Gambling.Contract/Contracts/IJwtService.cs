@@ -1,8 +1,8 @@
 ﻿using Gambling.Shared.Dtos.Identity;
 
-namespace Gambling.Contract;
+namespace Gambling.Contracts;
 
 public interface IJwtService
 {
-    Task<SignInOutputDto> GenerateToken(SignInInputDto input);
+    Task<SignInOutputDto> GenerateTokenAsync(SignInInputDto input, CancellationToken cancellationToken);
 }

@@ -1,8 +1,8 @@
 ﻿using Gambling.Shared.Dtos.Game;
 
-namespace Gambling.Contract;
+namespace Gambling.Contracts;
 
 public interface IGameService
 {
-    Task<Result<PlayOutputDto>> Play(PlayInputDto input, CancellationToken cancellationToken);
+    Task<Result<PlayOutputDto>> PlayAsync(PlayInputDto input, CancellationToken cancellationToken);
 }

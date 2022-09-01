@@ -1,4 +1,4 @@
-﻿namespace Gambling.Service.Implemetations;
+﻿namespace Gambling.Services.Implemetations;
 
 public class RandomService : IRandomService
 {

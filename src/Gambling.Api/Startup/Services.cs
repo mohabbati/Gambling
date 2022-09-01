@@ -1,4 +1,4 @@
-﻿using Gambling.Model;
+﻿using Gambling.Models;
 
 namespace Gambling.Api.Startup;
 

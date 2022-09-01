@@ -1,6 +1,6 @@
-﻿using Gambling.Model.Identity;
+﻿using Gambling.Models.Identity;
 
-namespace Gambling.Model.Account;
+namespace Gambling.Models.Account;
 
 public class Account : IGamblingEntity
 {

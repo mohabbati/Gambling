@@ -1,4 +1,4 @@
-﻿namespace Gambling.Model;
+﻿namespace Gambling.Models;
 
 public class AppSettings
 {
