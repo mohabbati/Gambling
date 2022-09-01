@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Identity;
 using Gambling.Model.Identity;
-using Gambling.Service.Dtos.Identity;
+using Gambling.Shared.Dtos.Identity;
 using Gambling.Model;
 
 namespace Gambling.Service.Implemetations;
@@ -14,15 +14,19 @@ public class JwtService : IJwtService
 {
     private readonly AppSettings _appSettings;
     private readonly SignInManager<User> _signInManager;
+    private readonly UserManager<User> _userManager;
 
-    public JwtService(IOptions<AppSettings> appSettings, SignInManager<User> signInManager)
+    public JwtService(IOptions<AppSettings> appSettings, SignInManager<User> signInManager, UserManager<User> userManager)
     {
         _appSettings = appSettings.Value;
         _signInManager = signInManager;
+        _userManager = userManager;
     }
 
-    public async Task<SignInOutputDto> GenerateToken(User user)
+    public async Task<SignInOutputDto> GenerateToken(SignInInputDto input)
     {
+        var user = await _userManager.FindByNameAsync(input.UserName);
+
         var secretKey = Encoding.UTF8.GetBytes(_appSettings.JwtSettings.SecretKey);
         var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKey), SecurityAlgorithms.HmacSha256Signature);
 

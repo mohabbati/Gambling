@@ -1,4 +1,4 @@
-﻿namespace Gambling.Service;
+﻿namespace Gambling.Contract;
 
 public interface IRandomService
 {

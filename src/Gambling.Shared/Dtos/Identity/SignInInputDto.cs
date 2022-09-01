@@ -1,4 +1,4 @@
-﻿namespace Gambling.Service.Dtos.Identity;
+﻿namespace Gambling.Shared.Dtos.Identity;
 
 public class SignInInputDto
 {

@@ -19,8 +19,6 @@ public static class Middlewares
 
         app.UseHttpsRedirection();
 
-        app.UseAuthorization();
-
         app.UseRouting();
 
         app.UseAuthentication();

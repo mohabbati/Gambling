@@ -1,5 +1,4 @@
-﻿using Gambling.Service;
-using Gambling.Service.Dtos.Identity;
+﻿using Gambling.Shared.Dtos.Identity;
 
 namespace Gambling.Api.Controllers;
 

@@ -1,6 +1,6 @@
-﻿using Gambling.Service.Dtos.Game;
+﻿using Gambling.Shared.Dtos.Game;
 
-namespace Gambling.Service;
+namespace Gambling.Contract;
 
 public interface IGameService
 {

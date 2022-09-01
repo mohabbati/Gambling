@@ -1,6 +1,6 @@
-﻿using Gambling.Service.Dtos.Identity;
+﻿using Gambling.Shared.Dtos.Identity;
 
-namespace Gambling.Service;
+namespace Gambling.Contract;
 
 public interface IAuthService
 {

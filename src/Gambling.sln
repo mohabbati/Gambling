@@ -5,15 +5,17 @@ VisualStudioVersion = 17.4.32804.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gambling.Api", "Gambling.Api\Gambling.Api.csproj", "{707D87EE-7877-4DE9-9638-3C4FE2124C9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambling.Service", "Gambling.Service\Gambling.Service.csproj", "{3A245197-B1B4-4A5D-8B9C-CB982468D3E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gambling.Service", "Gambling.Service\Gambling.Service.csproj", "{3A245197-B1B4-4A5D-8B9C-CB982468D3E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambling.Model", "Gambling.Model\Gambling.Model.csproj", "{26544283-40A0-42B4-8403-05A5F460154C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gambling.Model", "Gambling.Model\Gambling.Model.csproj", "{26544283-40A0-42B4-8403-05A5F460154C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambling.Data", "Gambling.Data\Gambling.Data.csproj", "{8295BC9F-609B-4E33-8982-F7C71180E165}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gambling.Data", "Gambling.Data\Gambling.Data.csproj", "{8295BC9F-609B-4E33-8982-F7C71180E165}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambling.Shared", "Gambling.Shared\Gambling.Shared.csproj", "{9AAD168F-DD8A-47FD-B8EF-49CCA27FD869}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gambling.Shared", "Gambling.Shared\Gambling.Shared.csproj", "{9AAD168F-DD8A-47FD-B8EF-49CCA27FD869}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambling.Test", "Gambling.Test\Gambling.Test.csproj", "{6C7122E4-3D1F-4145-95E8-DEC374C960AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gambling.Test", "Gambling.Test\Gambling.Test.csproj", "{6C7122E4-3D1F-4145-95E8-DEC374C960AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambling.Contract", "Gambling.Contract\Gambling.Contract.csproj", "{7E9A4A5C-75E6-47E6-9BD9-35F93FF5CD02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{6C7122E4-3D1F-4145-95E8-DEC374C960AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C7122E4-3D1F-4145-95E8-DEC374C960AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C7122E4-3D1F-4145-95E8-DEC374C960AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E9A4A5C-75E6-47E6-9BD9-35F93FF5CD02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E9A4A5C-75E6-47E6-9BD9-35F93FF5CD02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E9A4A5C-75E6-47E6-9BD9-35F93FF5CD02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E9A4A5C-75E6-47E6-9BD9-35F93FF5CD02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

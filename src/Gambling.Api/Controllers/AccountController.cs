@@ -1,4 +1,4 @@
-﻿using Gambling.Service.Dtos.Account;
+﻿using Gambling.Shared.Dtos.Account;
 
 namespace Gambling.Api.Controllers;
 

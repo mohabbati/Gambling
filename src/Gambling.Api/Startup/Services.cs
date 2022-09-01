@@ -16,8 +16,6 @@ public static class Services
 
         services.AddGamblingDbContext(configuration);
 
-        services.AddEndpointsApiExplorer();
-
         services.AddGamblingSwaggerGen();
 
         services.AddGamblingIdentity(appSettings.IdentitySettings);

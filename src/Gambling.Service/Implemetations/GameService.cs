@@ -1,7 +1,7 @@
 ﻿using Gambling.Data;
 using Gambling.Model.Game;
 using Gambling.Model.Identity;
-using Gambling.Service.Dtos.Game;
+using Gambling.Shared.Dtos.Game;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -53,7 +53,7 @@ public class GameService : IGameService
             return new Result<PlayOutputDto>(new LogicException(message));
         }
 
-        var play = await playGame(account.Id, input.BetAmount, input.ChanceNumber, cancellationToken);
+        var play = await PlayGame(account.Id, input.BetAmount, input.ChanceNumber, cancellationToken);
 
         if (play.PlayResult is PlayResult.Won)
         {
@@ -70,7 +70,7 @@ public class GameService : IGameService
         return output;
     }
 
-    private async Task<Play> playGame(Guid accountId, int betAmount, byte chanceNumber, CancellationToken cancellationToken)
+    private async Task<Play> PlayGame(Guid accountId, int betAmount, byte chanceNumber, CancellationToken cancellationToken)
     {
         var randomNumber = (byte)_randomService.Generate(0, 9 + 1);
 

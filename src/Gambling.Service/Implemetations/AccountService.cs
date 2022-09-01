@@ -1,7 +1,7 @@
 ﻿using Gambling.Data;
 using Gambling.Model.Account;
 using Gambling.Model.Identity;
-using Gambling.Service.Dtos.Account;
+using Gambling.Shared.Dtos.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,8 +13,8 @@ public class AccountService : IAccountService
     private readonly UserManager<User> _userManager;
 
     //TODO: We must ensure the account balance is valid due to the concurrency issue.
-    //In the current scenario, Semaphore just uses one thread as a solution. But it is not a good solution for the issue, however it works for this challenge.
-    //Another low cost approach is using queue for every account.
+    //In the current scenario, Semaphore just uses one thread as a solution. But it is not a good approach to resolve this issue, however it works for this challenge.
+    //A better solution would be using a queue for each account to handle concurrent operations.
     private readonly SemaphoreSlim _lock = new(1);
 
     public AccountService(GamblingDbContext dbContext, UserManager<User> userManager)
@@ -35,38 +35,42 @@ public class AccountService : IAccountService
 
         await _lock.WaitAsync(cancellationToken);
 
-        var initializedBefore = await _dbContext.Accounts.AnyAsync(x => x.UserId == user.Id);
+        try
+        {
+            var initializedBefore = await _dbContext.Accounts.AnyAsync(x => x.UserId == user.Id);
 
-        if (initializedBefore)
+            if (initializedBefore)
+            {
+                var message = "Account has initialized before.";
+                return new Result<AccountOutputDto>(new LogicException(message));
+            }
+
+            var account = input.Adapt<Account>();
+
+            var initialAmount = 10000;
+
+            account.Balance = initialAmount;
+            account.LastModifiedAt = DateTimeOffset.Now;
+            account.AccountTransactions.Add(
+                new AccountTransaction()
+                {
+                    TransactionType = TransactionType.Deposit,
+                    Amount = initialAmount,
+                    DoneAt = DateTimeOffset.Now
+                });
+
+            await _dbContext.Accounts.AddAsync(account, cancellationToken);
+            await _dbContext.SaveChangesAsync(cancellationToken);
+
+            var output = account.Adapt<AccountOutputDto>();
+
+            return output;
+
+        }
+        finally
         {
             _lock.Release();
-
-            var message = "Account has initialized before.";
-            return new Result<AccountOutputDto>(new LogicException(message));
         }
-
-        var account = input.Adapt<Account>();
-
-        var initialAmount = 10000;
-
-        account.Balance = initialAmount;
-        account.LastModifiedAt = DateTimeOffset.Now;
-        account.AccountTransactions.Add(
-            new AccountTransaction()
-            {
-                TransactionType = TransactionType.Deposit,
-                Amount = initialAmount,
-                DoneAt = DateTimeOffset.Now
-            });
-
-        await _dbContext.Accounts.AddAsync(account, cancellationToken);
-        await _dbContext.SaveChangesAsync(cancellationToken);
-
-        _lock.Release();
-
-        var output = account.Adapt<AccountOutputDto>();
-
-        return output;
     }
 
     public async Task<Result<DepositOutputDto>> Deposit(DepositInputDto input, CancellationToken cancellationToken)
