@@ -1,4 +1,4 @@
-﻿namespace Gambling.Model.Game;
+﻿namespace Gambling.Models.Game;
 
 public class Play : IGamblingEntity
 {

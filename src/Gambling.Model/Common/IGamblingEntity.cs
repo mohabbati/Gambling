@@ -1,4 +1,4 @@
-﻿namespace Gambling.Model.Common;
+﻿namespace Gambling.Models.Common;
 
 public interface IGamblingEntity<TKey>
 {

@@ -1,8 +1,8 @@
-﻿using Gambling.Model.Identity;
+﻿using Gambling.Models.Identity;
 using Gambling.Shared.Dtos.Identity;
 using Microsoft.AspNetCore.Identity;
 
-namespace Gambling.Service.Implemetations;
+namespace Gambling.Services.Implemetations;
 
 public class AuthService : IAuthService
 {
@@ -19,7 +19,7 @@ public class AuthService : IAuthService
         _accountService = accountService;
     }
 
-    public async Task<Result<SignUpOutputDto>> SignUp(SignUpInputDto input, CancellationToken cancellationToken)
+    public async Task<Result<SignUpOutputDto>> SignUpAsync(SignUpInputDto input, CancellationToken cancellationToken)
     {
         var existingUser = await _userManager.FindByNameAsync(input.UserName);
 
@@ -39,14 +39,14 @@ public class AuthService : IAuthService
             return new Result<SignUpOutputDto>(new LogicException(message));
         }
 
-        await _accountService.InitializeAccount(new() { UserId = user.Id }, cancellationToken);
+        await _accountService.InitializeAccountAsync(new() { UserId = user.Id }, cancellationToken);
 
         var output = user.Adapt<SignUpOutputDto>();
 
         return output;
     }
  
-    public async Task<Result<SignInOutputDto>> SignIn(SignInInputDto input, CancellationToken cancellationToken)
+    public async Task<Result<SignInOutputDto>> SignInAsync(SignInInputDto input, CancellationToken cancellationToken)
     {
         var user = await _userManager.FindByNameAsync(input.UserName);
 
@@ -65,6 +65,6 @@ public class AuthService : IAuthService
             return new Result<SignInOutputDto>(new LogicException(message));
         }
 
-        return await _jwtService.GenerateToken(input);
+        return await _jwtService.GenerateTokenAsync(input, cancellationToken);
     }
 }

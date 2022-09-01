@@ -16,7 +16,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Gambling.Model\Gambling.Model.csproj" />
+		<ProjectReference Include="..\Gambling.Model\Gambling.Models.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Migrations\" />
 	</ItemGroup>
 
 </Project>

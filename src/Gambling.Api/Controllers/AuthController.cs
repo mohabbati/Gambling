@@ -15,7 +15,7 @@ public class AuthController : GamblingControllerBase
     [HttpPost("[action]")]
     public async Task<IActionResult> SignUp(SignUpInputDto input, CancellationToken cancellationToken)
     {
-        var result = await _authService.SignUp(input, cancellationToken);
+        var result = await _authService.SignUpAsync(input, cancellationToken);
 
         return result.ToOk(c => c);
     }
@@ -23,7 +23,7 @@ public class AuthController : GamblingControllerBase
     [HttpPost("[action]")]
     public async Task<IActionResult> SignIn(SignInInputDto input, CancellationToken cancellationToken)
     {
-        var result = await _authService.SignIn(input, cancellationToken);
+        var result = await _authService.SignInAsync(input, cancellationToken);
 
         return result.ToOk(c => c);
     }

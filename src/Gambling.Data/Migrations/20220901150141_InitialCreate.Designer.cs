@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Gambling.Data.Migrations
 {
     [DbContext(typeof(GamblingDbContext))]
-    [Migration("20220830122632_AddAccountAndGameEntities")]
-    partial class AddAccountAndGameEntities
+    [Migration("20220901150141_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace Gambling.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Gambling.Model.Account.Account", b =>
+            modelBuilder.Entity("Gambling.Models.Account.Account", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -46,7 +46,7 @@ namespace Gambling.Data.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("Gambling.Model.Account.AccountTransaction", b =>
+            modelBuilder.Entity("Gambling.Models.Account.AccountTransaction", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -71,7 +71,7 @@ namespace Gambling.Data.Migrations
                     b.ToTable("AccountTransactions");
                 });
 
-            modelBuilder.Entity("Gambling.Model.Game.Play", b =>
+            modelBuilder.Entity("Gambling.Models.Game.Play", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -102,7 +102,7 @@ namespace Gambling.Data.Migrations
                     b.ToTable("Plays");
                 });
 
-            modelBuilder.Entity("Gambling.Model.Identity.Role", b =>
+            modelBuilder.Entity("Gambling.Models.Identity.Role", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -130,7 +130,7 @@ namespace Gambling.Data.Migrations
                     b.ToTable("AspNetRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Gambling.Model.Identity.RoleClaim", b =>
+            modelBuilder.Entity("Gambling.Models.Identity.RoleClaim", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -154,7 +154,7 @@ namespace Gambling.Data.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Gambling.Model.Identity.User", b =>
+            modelBuilder.Entity("Gambling.Models.Identity.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -225,7 +225,7 @@ namespace Gambling.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Gambling.Model.Identity.UserClaim", b =>
+            modelBuilder.Entity("Gambling.Models.Identity.UserClaim", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -249,7 +249,7 @@ namespace Gambling.Data.Migrations
                     b.ToTable("AspNetUserClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Gambling.Model.Identity.UserLogin", b =>
+            modelBuilder.Entity("Gambling.Models.Identity.UserLogin", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
@@ -270,7 +270,7 @@ namespace Gambling.Data.Migrations
                     b.ToTable("AspNetUserLogins", (string)null);
                 });
 
-            modelBuilder.Entity("Gambling.Model.Identity.UserRole", b =>
+            modelBuilder.Entity("Gambling.Models.Identity.UserRole", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -285,7 +285,7 @@ namespace Gambling.Data.Migrations
                     b.ToTable("AspNetUserRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Gambling.Model.Identity.UserToken", b =>
+            modelBuilder.Entity("Gambling.Models.Identity.UserToken", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -304,9 +304,9 @@ namespace Gambling.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Gambling.Model.Account.Account", b =>
+            modelBuilder.Entity("Gambling.Models.Account.Account", b =>
                 {
-                    b.HasOne("Gambling.Model.Identity.User", "User")
+                    b.HasOne("Gambling.Models.Identity.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -315,9 +315,9 @@ namespace Gambling.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Gambling.Model.Account.AccountTransaction", b =>
+            modelBuilder.Entity("Gambling.Models.Account.AccountTransaction", b =>
                 {
-                    b.HasOne("Gambling.Model.Account.Account", "Account")
+                    b.HasOne("Gambling.Models.Account.Account", "Account")
                         .WithMany("AccountTransactions")
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -326,9 +326,9 @@ namespace Gambling.Data.Migrations
                     b.Navigation("Account");
                 });
 
-            modelBuilder.Entity("Gambling.Model.Game.Play", b =>
+            modelBuilder.Entity("Gambling.Models.Game.Play", b =>
                 {
-                    b.HasOne("Gambling.Model.Account.Account", "Account")
+                    b.HasOne("Gambling.Models.Account.Account", "Account")
                         .WithMany()
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -337,58 +337,58 @@ namespace Gambling.Data.Migrations
                     b.Navigation("Account");
                 });
 
-            modelBuilder.Entity("Gambling.Model.Identity.RoleClaim", b =>
+            modelBuilder.Entity("Gambling.Models.Identity.RoleClaim", b =>
                 {
-                    b.HasOne("Gambling.Model.Identity.Role", null)
+                    b.HasOne("Gambling.Models.Identity.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Gambling.Model.Identity.UserClaim", b =>
+            modelBuilder.Entity("Gambling.Models.Identity.UserClaim", b =>
                 {
-                    b.HasOne("Gambling.Model.Identity.User", null)
+                    b.HasOne("Gambling.Models.Identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Gambling.Model.Identity.UserLogin", b =>
+            modelBuilder.Entity("Gambling.Models.Identity.UserLogin", b =>
                 {
-                    b.HasOne("Gambling.Model.Identity.User", null)
+                    b.HasOne("Gambling.Models.Identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Gambling.Model.Identity.UserRole", b =>
+            modelBuilder.Entity("Gambling.Models.Identity.UserRole", b =>
                 {
-                    b.HasOne("Gambling.Model.Identity.Role", null)
+                    b.HasOne("Gambling.Models.Identity.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Gambling.Model.Identity.User", null)
+                    b.HasOne("Gambling.Models.Identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Gambling.Model.Identity.UserToken", b =>
+            modelBuilder.Entity("Gambling.Models.Identity.UserToken", b =>
                 {
-                    b.HasOne("Gambling.Model.Identity.User", null)
+                    b.HasOne("Gambling.Models.Identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Gambling.Model.Account.Account", b =>
+            modelBuilder.Entity("Gambling.Models.Account.Account", b =>
                 {
                     b.Navigation("AccountTransactions");
                 });

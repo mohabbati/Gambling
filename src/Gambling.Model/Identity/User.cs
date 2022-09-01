@@ -1,9 +1,9 @@
-﻿using Gambling.Model.Common;
+﻿using Gambling.Models.Common;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Gambling.Model.Identity;
+namespace Gambling.Models.Identity;
 
 public class User : IdentityUser<Guid>, IGamblingEntity
 {

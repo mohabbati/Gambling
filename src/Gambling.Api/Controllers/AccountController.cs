@@ -16,7 +16,7 @@ public class AccountController : GamblingControllerBase
     {
         input.UserId = User.GetUserId();
 
-        var result = await _accountService.InitializeAccount(input, cancellationToken);
+        var result = await _accountService.InitializeAccountAsync(input, cancellationToken);
 
         return result.ToOk(c => c);
     }

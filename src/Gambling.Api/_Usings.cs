@@ -2,4 +2,4 @@
 global using Microsoft.AspNetCore.Authorization;
 global using LanguageExt.Common;
 global using System.Security.Claims;
-global using Gambling.Contract;
+global using Gambling.Contracts;

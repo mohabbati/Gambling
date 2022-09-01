@@ -1,11 +1,11 @@
 ﻿using Gambling.Data;
-using Gambling.Model.Game;
-using Gambling.Model.Identity;
+using Gambling.Models.Game;
+using Gambling.Models.Identity;
 using Gambling.Shared.Dtos.Game;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Gambling.Service.Implemetations;
+namespace Gambling.Services.Implemetations;
 
 public class GameService : IGameService
 {
@@ -22,7 +22,7 @@ public class GameService : IGameService
         _randomService = randomService;
     }
 
-    public async Task<Result<PlayOutputDto>> Play(PlayInputDto input, CancellationToken cancellationToken)
+    public async Task<Result<PlayOutputDto>> PlayAsync(PlayInputDto input, CancellationToken cancellationToken)
     {
         var user = await _userManager.FindByIdAsync(input.UserId.ToString());
 
@@ -46,7 +46,7 @@ public class GameService : IGameService
             return new Result<PlayOutputDto>(new LogicException(message));
         };
 
-        var withdrawResult = await _accountService.Withdraw(new() { AccountId = account.Id, Amount = input.BetAmount }, cancellationToken);
+        var withdrawResult = await _accountService.WithdrawAsync(new() { AccountId = account.Id, Amount = input.BetAmount }, cancellationToken);
         if (withdrawResult.IsSuccess is false)
         {
             var message = withdrawResult.ToString();
@@ -57,7 +57,7 @@ public class GameService : IGameService
 
         if (play.PlayResult is PlayResult.Won)
         {
-            var depositResult = await _accountService.Deposit(new() { AccountId = account.Id, Amount = input.BetAmount * 9 }, cancellationToken);
+            var depositResult = await _accountService.DepositAsync(new() { AccountId = account.Id, Amount = input.BetAmount * 9 }, cancellationToken);
             if (depositResult.IsSuccess is false)
             {
                 var message = depositResult.ToString();
