@@ -1,0 +1,9 @@
+global using Xunit;
+global using Moq;
+global using Moq.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.EntityFrameworkCore;
+global using LanguageExt.Common;
+global using Gambling.Data;
+global using Gambling.Contracts;
+global using Gambling.Services.Implemetations;
