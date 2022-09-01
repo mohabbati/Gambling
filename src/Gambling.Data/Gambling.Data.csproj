@@ -16,7 +16,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Gambling.Model\Gambling.Models.csproj" />
+		<ProjectReference Include="..\Gambling.Models\Gambling.Models.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
