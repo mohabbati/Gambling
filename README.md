@@ -21,4 +21,4 @@ A REST API implementation of a gambling game with a clean architecture!
 ## How to use the app
 1. Sign up using the Account controller.
 2. Sign in to get an access token using the Account controller.
-3. Use the received access token to play the game using the Play controller. *(Add the access token to Swagger UI authorization on the top right. Or use postman.)*
+3. Use the received access token to play the game using the Game controller. *(Add the access token to Swagger UI authorization on the top right. Or use postman.)*
