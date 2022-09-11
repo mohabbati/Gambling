@@ -1,5 +1,5 @@
 ﻿# Introduction
-A REST API implementation of a gambling game with a clean architecture! 🎲
+A REST API implementation of a gambling game with a clean architecture!
 
 ## Requirements
 * An IDE/Code Editor for example Visual Studio, VSCode or Rider
